@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>anspect</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:ROND,wght@0..100,100..900&display=swap" rel="stylesheet" />
+
+  <style>
+    @font-face {
+      font-family: 'Google Sans Flex';
+      font-style: normal;
+      font-display: swap;
+      font-weight: 1 1000;
+      src: url('https://cdn.jsdelivr.net/fontsource/fonts/google-sans-flex:vf@latest/latin-wght-normal.woff2') format('woff2-variations');
+    }
+
+    :root {
+      --bg:      #403B35;
+      --surface: #4F4539;
+      --surface2:#5a5048;
+      --surface3:#655b52;
+      --text:    #FFF9EB;
+      --muted:   #A59C95;
+      --accent:  #D4C4B4;
+      --accent2: #bfae9e;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Google Sans Flex', sans-serif;
+      font-variation-settings: 'ROND' 100, 'wght' 400;
+      min-height: 100vh;
+    }
+
+    /* ── TOP NAV ── */
+    .top-nav-bar {
+      width: 100%; max-width: 480px;
+      height: 64px;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 24px;
+      background: var(--bg);
+      position: relative; z-index: 2001;
+      margin: 0 auto;
+    }
+     .brand-logo {
+     font-size: 22px;
+     font-variation-settings: 'ROND' 30, 'wght' 800;
+     letter-spacing: -0.5px;
+     color: var(--text);
+     text-decoration: none;
+     display: inline-block;
+    }
+    .menu-toggle {
+      background: none; border: none; color: var(--text); cursor: pointer;
+      padding: 8px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .menu-toggle:hover { background: var(--surface); }
+    .menu-toggle svg { width: 24px; height: 24px; }
+
+    /* ── DROPDOWN ── */
+    .dropdown-menu-container {
+      position: absolute; top: 64px; left: 50%;
+      transform: translateX(-50%);
+      width: 100%; max-width: 480px;
+      background: #352f2a;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+      z-index: 2000;
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.3s cubic-bezier(0.4,0,0.2,1), padding 0.3s ease;
+      padding: 0 24px;
+    }
+    .dropdown-menu-container.show {
+      max-height: 200px;
+      padding: 16px 24px 24px;
+    }
+    .dropdown-nav-list { display: flex; flex-direction: column; gap: 8px; }
+    .dropdown-item {
+      display: flex; align-items: center; gap: 12px;
+      padding: 14px 16px; text-decoration: none;
+      color: var(--muted); font-size: 16px;
+      font-variation-settings: 'ROND' 100, 'wght' 500;
+      border-radius: 14px;
+      transition: background 0.2s, color 0.2s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .dropdown-item:hover { background: var(--surface); color: var(--text); }
+    .dropdown-item.active {
+      background: var(--surface2); color: var(--accent);
+      font-variation-settings: 'ROND' 100, 'wght' 700;
+    }
+    .item-emoji { font-size: 18px; }
+
+    /* ── PAGE ── */
+    #page-about {
+      animation: fadeUp 0.4s ease both;
+      padding-bottom: 40px;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .profile-section {
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 40px 24px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .profile-photo-wrap {
+      border-radius: 20px;
+      overflow: hidden;
+      background: var(--surface2);
+      display: inline-flex;
+      line-height: 0;
+      padding: 10px;
+    }
+
+    .profile-photo {
+      display: block;
+      max-width: 220px;
+      height: auto;
+      border-radius: 12px;
+    }
+
+    .profile-name {
+      font-size: 26px;
+      font-variation-settings: 'ROND' 40, 'wght' 800;
+      letter-spacing: -0.5px;
+      color: var(--text);
+      text-align: center;
+    }
+
+    /* ── CARDS SECTION ── */
+    .cards-section {
+      max-width: 480px;
+      margin: 32px auto 0;
+      padding: 0 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .about-bio {
+      background: var(--surface);
+      border-radius: 18px;
+      padding: 22px 24px;
+    }
+    .about-bio-label {
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-variation-settings: 'ROND' 100, 'wght' 600;
+      margin-bottom: 10px;
+    }
+    .about-bio p {
+      font-size: 14px;
+      line-height: 1.8;
+      color: var(--muted);
+    }
+
+    .about-cta {
+      background: var(--surface);
+      border-radius: 18px;
+      padding: 22px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      text-decoration: none;
+      border: 1px solid rgba(212,196,180,0.08);
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .about-cta:hover {
+      border-color: rgba(212,196,180,0.3);
+      transform: translateY(-2px);
+    }
+    .about-cta-text h3 {
+      font-size: 15px;
+      font-variation-settings: 'ROND' 100, 'wght' 700;
+      color: var(--text);
+      margin-bottom: 3px;
+    }
+    .about-cta-text p { font-size: 13px; color: var(--muted); }
+    .cta-arrow {
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      background: var(--accent);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; color: var(--bg);
+      transition: background 0.2s;
+    }
+    .about-cta:hover .cta-arrow { background: var(--accent2); }
+    .cta-arrow svg { width: 18px; height: 18px; fill: currentColor; }
+
+    /* ── SOCIAL PILL ── */
+    .social-pill {
+      display: flex;
+      background: var(--surface);
+      border-radius: 50px;
+      overflow: hidden;
+      border: 1px solid var(--surface3);
+    }
+    .social-pill-btn {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 16px;
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 13px;
+      font-variation-settings: 'ROND' 100, 'wght' 600;
+      font-family: inherit;
+      transition: background 0.2s, color 0.2s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .social-pill-btn:hover { background: var(--surface2); color: var(--text); }
+    .social-pill-btn svg { width: 18px; height: 18px; fill: currentColor; flex-shrink: 0; }
+    .social-pill-divider {
+      width: 1px;
+      background: var(--surface3);
+      flex-shrink: 0;
+    }
+
+    footer {
+      max-width: 480px;
+      margin: 32px 0 auto;
+      padding: 16px 24px 32px;
+      font-size: 12px; color: var(--muted); text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="top-nav-bar">
+    <a href="/" class="brand-logo">anspect</a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Buka Menu">
+      <svg id="hamburgerIcon" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M3 18h13v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+      </svg>
+      <svg id="closeIcon" viewBox="0 0 24 24" fill="currentColor" style="display:none;">
+        <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+      </svg>
+    </button>
+  </header>
+
+  <div class="dropdown-menu-container" id="dropdownMenu">
+    <nav class="dropdown-nav-list">
+      <a href="/" class="dropdown-item active"><span class="item-emoji">🏠</span> Home</a>
+      <a href="/music" class="dropdown-item"><span class="item-emoji">🎵</span> Music</a>
+    </nav>
+  </div>
+
+  <div id="page-about">
+
+    <div class="profile-section">
+      <div class="profile-photo-wrap">
+        <img class="profile-photo" src="https://i.ibb.co.com/vCy7VpTF/pp.jpg" alt="anspect" />
+      </div>
+      <div class="profile-name">anspect</div>
+
+      <div class="social-pill">
+        <a class="social-pill-btn" href="https://youtube.com/@an.spect_" target="_blank" aria-label="YouTube">
+          <svg viewBox="0 0 24 24"><path d="M23.498 6.163a3.003 3.003 0 0 0-2.11-2.11C19.517 3.545 12 3.545 12 3.545s-7.517 0-9.388.508a3.003 3.003 0 0 0-2.11 2.11C0 8.033 0 12 0 12s0 3.967.502 5.837a3.003 3.003 0 0 0 2.11 2.11c1.871.507 9.388.507 9.388.507s7.517 0 9.388-.507a3.003 3.003 0 0 0 2.11-2.11C24 15.967 24 12 24 12s0-3.967-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          Subscribe!
+        </a>
+        <div class="social-pill-divider"></div>
+        <a class="social-pill-btn" href="https://github.com/fuchikaru/fuchikaru.github.io" target="_blank" aria-label="GitHub">
+          <svg viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          Give star!
+        </a>
+      </div>
+    </div>
+
+    <div class="cards-section">
+
+      <div class="about-bio">
+        <div class="about-bio-label">About This Site</div>
+        <p>This site is for archiving my personal songs collection and my remixes. You can stream or download the songs.</p>
+      </div>
+
+      <a href="/music" class="about-cta">
+        <div class="about-cta-text">
+          <h3>My Catalog 🎵</h3>
+          <p>Stream &amp; download</p>
+        </div>
+        <div class="cta-arrow">
+          <svg viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>
+        </div>
+      </a>
+
+    </div>
+    
+    <footer>Made with love ♡ · All rights reserved</footer>
+  </div>
+
+  <script>
+    const menuToggle    = document.getElementById('menuToggle');
+    const dropdownMenu  = document.getElementById('dropdownMenu');
+    const hamburgerIcon = document.getElementById('hamburgerIcon');
+    const closeIcon     = document.getElementById('closeIcon');
+
+    menuToggle.addEventListener('click', () => {
+      const isOpen = dropdownMenu.classList.toggle('show');
+      hamburgerIcon.style.display = isOpen ? 'none'  : 'block';
+      closeIcon.style.display     = isOpen ? 'block' : 'none';
+      menuToggle.setAttribute('aria-label', isOpen ? 'Tutup Menu' : 'Buka Menu');
+    });
+
+    document.addEventListener('click', e => {
+      if (!menuToggle.contains(e.target) && !dropdownMenu.contains(e.target)) {
+        dropdownMenu.classList.remove('show');
+        hamburgerIcon.style.display = 'block';
+        closeIcon.style.display     = 'none';
+      }
+    });
+  </script>
+</body>
+</html>
